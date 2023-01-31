@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<title>Simple tac toe</title>
+	</head>
+	<body>
+		<header>
+			<h1 class="title">Simple tic tac toe</h1>
+			<h3 class="subtitle">A simple tic tac toe game using vanilla Javascript</h3>
+		</header>
+		<main>
+			<div class="game-scoreboard">
+				<div class="game-score" data-tile="X">
+					<div>X</div>
+					<div id="x-score">0</div>
+				</div>
+				<div id="game-announcement">_</div>
+
+				<div class="game-score" data-tile="O">
+					<div>O</div>
+					<div id="o-score">0</div>
+				</div>
+			</div>
+			<div class="game-container">
+				<div class="game-board">
+					<div class="game-tile" data-tile=""></div>
+					<div class="game-tile" data-tile=""></div>
+					<div class="game-tile" data-tile=""></div>
+					<div class="game-tile" data-tile=""></div>
+					<div class="game-tile" data-tile=""></div>
+					<div class="game-tile" data-tile=""></div>
+					<div class="game-tile" data-tile=""></div>
+					<div class="game-tile" data-tile=""></div>
+					<div class="game-tile" data-tile=""></div>
+				</div>
+			</div>
+			<div class="btn-container">
+				<button id="continue-btn">Continue</button>
+				<button id="reset-btn">Reset</button>
+			</div>
+		</main>
+		<!-- 
+      - defer allows the script to load after the content, so manipulating DOM is possible
+      - either use defer or put the script tag at the end of the body
+     -->
+		<script defer src="main.js"></script>
+	</body>
+</html>

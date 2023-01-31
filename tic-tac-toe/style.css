@@ -1,0 +1,129 @@
+:root {
+	--background-color: #121212;
+	--tile-color: #eee;
+	--tile-one-color: cyan;
+	--tile-two-color: pink;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	padding: 10px;
+	background: var(--background-color);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 90vh;
+}
+
+header {
+	text-align: center;
+	color: var(--tile-color);
+}
+
+main {
+	margin-top: 5vmin;
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.game-scoreboard {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 100%;
+	text-align: center;
+}
+
+.game-score > :first-child {
+	font-size: 3vmin;
+}
+
+.game-score > :last-child {
+	font-size: 5vmin;
+}
+
+.game-container {
+	width: 100%;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	text-align: center;
+	gap: 10px;
+}
+
+.game-board {
+	display: flex;
+	flex-wrap: wrap;
+	height: clamp(200px, 90vmin, 400px);
+	width: clamp(200px, 90vmin, 400px);
+	margin: auto;
+	gap: 2vmin;
+	margin: 5vmin 0;
+}
+
+.game-tile {
+	width: 30%;
+	height: 30%;
+	border: 3px solid var(--tile-color);
+	font-size: 10vmin;
+	color: var(--tile-color);
+	cursor: pointer;
+	border-radius: 8px;
+	display: grid;
+	place-items: center;
+	user-select: none;
+}
+
+[data-tile='X'] {
+	color: var(--tile-one-color);
+}
+
+[data-tile='O'] {
+	color: var(--tile-two-color);
+}
+
+.btn-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	gap: 30px;
+}
+
+#reset-btn,
+#continue-btn {
+	border-radius: 8px;
+	padding: 10px 20px;
+	background-color: var(--tile-color);
+	cursor: pointer;
+	transition: 0.22s all ease-in-out;
+	outline: none;
+	font-weight: bold;
+	letter-spacing: 1px;
+	border: none;
+}
+
+#reset-btn:hover,
+#continue-btn:hover {
+	background-color: #ddd;
+	transform: scale(120%);
+}
+
+#reset-btn:active,
+#continue-btn:active {
+	background-color: #ccc;
+	transform: scale(100%);
+}
+
+#game-announcement {
+	text-align: center;
+	color: var(--tile-color);
+	font-size: 1.5rem;
+}
