@@ -41,12 +41,8 @@ main {
 	text-align: center;
 }
 
-.game-score > :first-child {
-	font-size: 3vmin;
-}
-
 .game-score > :last-child {
-	font-size: 5vmin;
+	font-size: 2rem;
 }
 
 .game-container {
@@ -64,7 +60,7 @@ main {
 	height: clamp(200px, 90vmin, 400px);
 	width: clamp(200px, 90vmin, 400px);
 	margin: auto;
-	gap: 2vmin;
+	gap: clamp(10px, 2vmin, 20px);
 	margin: 5vmin 0;
 }
 
