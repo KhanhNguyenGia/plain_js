@@ -72,7 +72,7 @@ function diceRoll() {
 
 	for (let i = 0; i < numRoll / 1.5; i++) {
 		setTimeout(() => {
-			const audio = new Audio(`/bau-cua/audio/metal_${Math.floor(Math.random() * 2 + 1)}.wav`);
+			const audio = new Audio(`audio/metal_${Math.floor(Math.random() * 2 + 1)}.wav`);
 			audio.play();
 		}, DELAY_BETWEEN_SOUNDS * i);
 	}
