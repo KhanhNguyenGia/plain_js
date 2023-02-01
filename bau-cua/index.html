@@ -49,12 +49,12 @@
 		<div class="btn-container">
 			<button class="btn" id="open-btn">Open</button>
 			<button class="btn" id="roll-btn">Roll</button>
-			<button class="btn" id="close-btn">Close</button>
+			<button class="btn" id="close-btn" disabled>Close</button>
 		</div>
-		<input id="volume-slider" type="range" min="0" max="100" />
-		<label for="open-when-finish">
-			<input id="open-when-finish" name="open-when-finish" type="checkbox" />
-			Open when finish
+		<input id="volume-slider" type="range" min="0" max="100" value="20" />
+		<label for="automatic">
+			<input id="automatic" name="automatic" type="checkbox" checked />
+			Automatic
 		</label>
 		<script defer src="main.js"></script>
 	</body>

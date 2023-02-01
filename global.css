@@ -37,3 +37,8 @@ body {
 	background-color: #ccc;
 	transform: scale(100%);
 }
+
+.btn:disabled {
+	background-color: #aaa !important;
+	cursor: not-allowed;
+}

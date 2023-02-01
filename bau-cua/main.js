@@ -1,5 +1,5 @@
-const ROLL_TIMES = 10;
-const DELAY_BETWEEN_SOUNDS = 150;
+const ROLL_LIMIT = 10;
+const DELAY_TIME = 150;
 const preload_1 = new Audio('audio/metal_1.wav');
 const preload_2 = new Audio('audio/metal_2.wav');
 
@@ -9,32 +9,7 @@ const closeBtn = document.querySelector('#close-btn');
 const rollBtn = document.querySelector('#roll-btn');
 const dice = document.querySelectorAll('.dice');
 const volumeSlider = document.querySelector('#volume-slider');
-const openWhenFinish = document.querySelector('#open-when-finish');
-
-openBtn.addEventListener('click', openCover);
-closeBtn.addEventListener('click', closeCover);
-rollBtn.addEventListener('click', diceRoll);
-volumeSlider.addEventListener('change', onVolumeChange);
-
-function openCover() {
-	cover.setAttribute('data-open', 'true');
-	// could also set play sound to false
-	const audio = new Audio('audio/cover.mp4');
-	audio.volume = volume;
-	audio.play();
-}
-
-function closeCover() {
-	cover.setAttribute('data-open', 'false');
-	// could also set play sound to true
-}
-
-function onVolumeChange(e) {
-	// set volume of audio
-	volume = e.target.value / 100;
-}
-
-let volume = 0.5;
+const automatic = document.querySelector('#automatic');
 
 const diceFormation = {
 	0: {
@@ -53,6 +28,39 @@ const diceFormation = {
 		z: 0,
 	},
 };
+
+let coverAudio;
+let rolling = false;
+let volume = 0.5;
+
+openBtn.addEventListener('click', openCover);
+closeBtn.addEventListener('click', closeCover);
+rollBtn.addEventListener('click', diceRoll);
+volumeSlider.addEventListener('change', onVolumeChange);
+
+function openCover() {
+	if (cover.getAttribute('data-open') === 'true') return;
+	cover.setAttribute('data-open', 'true');
+	// could also set play sound to false
+	coverAudio = new Audio('audio/cover.mp4');
+	coverAudio.volume = volume;
+	coverAudio.play();
+	openBtn.disabled = true;
+	closeBtn.disabled = false;
+}
+
+function closeCover() {
+	cover.setAttribute('data-open', 'false');
+	coverAudio?.pause();
+	openBtn.disabled = false;
+	closeBtn.disabled = true;
+	// could also set play sound to true
+}
+
+function onVolumeChange(e) {
+	// set volume of audio
+	volume = e.target.value / 100;
+}
 
 function roll(dice, times, index) {
 	if (times === 0) {
@@ -77,25 +85,36 @@ function roll(dice, times, index) {
 }
 
 function diceRoll() {
-	let numRoll = 0;
+	if (rolling) return;
+	rolling = true;
+	rollBtn.disabled = true;
+	automatic.checked && closeCover();
+	setTimeout(
+		() => {
+			let numRoll = 0;
 
-	dice.forEach((item, index) => {
-		let temp = Math.round(Math.random() * ROLL_TIMES + 5);
-		numRoll = temp > numRoll ? temp : numRoll;
-		roll(item, temp, index);
-	});
+			dice.forEach((item, index) => {
+				let temp = Math.round(Math.random() * ROLL_LIMIT + 5);
+				numRoll = temp > numRoll ? temp : numRoll;
+				roll(item, temp, index);
+			});
 
-	for (let i = 0; i < numRoll / 1.5; i++) {
-		setTimeout(() => {
-			const audio = new Audio(`audio/metal_${Math.floor(Math.random() * 2 + 1)}.wav`);
-			audio.volume = volume;
-			audio.play();
-		}, DELAY_BETWEEN_SOUNDS * i);
-	}
+			for (let i = 0; i < numRoll / 1.5; i++) {
+				setTimeout(() => {
+					const audio = new Audio(`audio/metal_${Math.floor(Math.random() * 2 + 1)}.wav`);
+					audio.volume = volume;
+					audio.play();
+				}, DELAY_TIME * i);
+			}
 
-	setTimeout(() => {
-		if (openWhenFinish.checked) {
-			openCover();
-		}
-	}, (DELAY_BETWEEN_SOUNDS * numRoll) / 1.5 + 500);
+			setTimeout(() => {
+				if (automatic.checked) {
+					openCover();
+				}
+				rolling = false;
+				rollBtn.disabled = false;
+			}, (DELAY_TIME * numRoll) / 1.5 + 500);
+		},
+		automatic.checked ? 500 : 0
+	);
 }
