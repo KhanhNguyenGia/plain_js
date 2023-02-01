@@ -1,5 +1,7 @@
 const ROLL_TIMES = 10;
 const DELAY_BETWEEN_SOUNDS = 150;
+const preload_1 = new Audio('audio/metal_1.wav');
+const preload_2 = new Audio('audio/metal_2.wav');
 
 const cover = document.querySelector('#cover');
 const openBtn = document.querySelector('#open-btn');
