@@ -1,23 +1,7 @@
 :root {
-	--background-color: #121212;
 	--tile-color: #eee;
 	--tile-one-color: cyan;
 	--tile-two-color: pink;
-}
-
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
-
-body {
-	padding: 10px;
-	background: var(--background-color);
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	height: 90vh;
 }
 
 header {
@@ -33,12 +17,18 @@ main {
 	align-items: center;
 }
 
+.subtitle {
+	color: #999;
+	margin: 20px 0;
+}
+
 .game-scoreboard {
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: center;
 	align-items: center;
 	width: 100%;
 	text-align: center;
+	gap: 40px;
 }
 
 .game-score > :last-child {
@@ -91,31 +81,6 @@ main {
 	align-items: center;
 	width: 100%;
 	gap: 30px;
-}
-
-#reset-btn,
-#continue-btn {
-	border-radius: 8px;
-	padding: 10px 20px;
-	background-color: var(--tile-color);
-	cursor: pointer;
-	transition: 0.22s all ease-in-out;
-	outline: none;
-	font-weight: bold;
-	letter-spacing: 1px;
-	border: none;
-}
-
-#reset-btn:hover,
-#continue-btn:hover {
-	background-color: #ddd;
-	transform: scale(120%);
-}
-
-#reset-btn:active,
-#continue-btn:active {
-	background-color: #ccc;
-	transform: scale(100%);
 }
 
 #game-announcement {

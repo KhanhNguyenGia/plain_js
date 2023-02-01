@@ -1,0 +1,171 @@
+:root {
+	--dice-size: 100px;
+	--dice-size-negative: -100px;
+	--dice-center-offset: -50px;
+	--disk-size: 400px;
+}
+
+body {
+	overflow: hidden;
+}
+
+header {
+	text-align: center;
+	color: var(--tile-color);
+}
+
+.subtitle {
+	color: #999;
+	margin: 20px 0;
+}
+
+main {
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.dice-container {
+	position: relative;
+	margin: 150px 0;
+	display: grid;
+	grid-template-areas:
+		'top top'
+		'left right';
+	place-items: center;
+	gap: 30px;
+	perspective: 1000px;
+}
+
+.btn-container > button {
+	color: white;
+	margin: 0 20px;
+}
+
+.dice:nth-child(1) {
+	grid-area: top;
+}
+
+.dice:nth-child(2) {
+	grid-area: left;
+}
+.dice:nth-child(3) {
+	grid-area: right;
+}
+
+#open-btn {
+	background: green;
+}
+
+#close-btn {
+	background: red;
+}
+
+#roll-btn {
+	background: orange;
+}
+
+#cover {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 100%;
+	position: absolute;
+	width: var(--disk-size);
+	height: var(--disk-size);
+	background: white;
+	transition: 0.5s all ease;
+}
+
+#cover[data-open='true'] {
+	transform: translate(calc(-50% - var(--disk-size)), -50%);
+}
+
+.dice {
+	width: var(--dice-size);
+	height: var(--dice-size);
+	display: inline-block;
+	margin: 0 10px;
+	transform-style: preserve-3d;
+	transform-origin: center center var(--dice-center-offset);
+}
+
+.dice:nth-child(2) {
+	transform: rotateZ(-10deg) rotateY(180deg);
+}
+
+.dice:nth-child(3) {
+	transform: rotateZ(10deg) rotateX(90deg);
+}
+
+.dice-face {
+	position: absolute;
+	width: var(--dice-size);
+	height: var(--dice-size);
+	background: white;
+}
+
+.dice-face > img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+
+.dice-face:nth-child(1) {
+	background-color: red;
+}
+
+.dice-face:nth-child(2) {
+	transform: translateX(var(--dice-size)) rotateY(90deg);
+	transform-origin: center left;
+	background-color: blue;
+}
+
+.dice-face:nth-child(3) {
+	transform: translateY(var(--dice-size-negative)) rotateX(90deg);
+	transform-origin: center bottom;
+	background-color: green;
+}
+
+.dice-face:nth-child(4) {
+	transform: translateX(var(--dice-size-negative)) rotateY(-90deg);
+	transform-origin: center right;
+	background-color: yellow;
+}
+
+.dice-face:nth-child(5) {
+	transform: translateY(var(--dice-size)) rotateX(-90deg);
+	transform-origin: center top;
+	background-color: orange;
+}
+
+.dice-face:nth-child(6) {
+	transform: translateZ(var(--dice-size-negative)) rotateY(180deg);
+	background-color: purple;
+}
+
+#disk {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 100%;
+	position: absolute;
+	width: var(--disk-size);
+	height: var(--disk-size);
+	background-color: #444;
+	transition: 0.5s all ease;
+}
+
+#disk-inner {
+	border-radius: 100%;
+	position: absolute;
+	width: 80%;
+	height: 80%;
+	background: #333;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}

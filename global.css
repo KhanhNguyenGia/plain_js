@@ -1,0 +1,40 @@
+:root {
+	--background-color: #121212;
+	--tile-color: #eee;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	padding: 20px;
+	background: var(--background-color);
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+.btn {
+	border-radius: 8px;
+	padding: 10px 20px;
+	background-color: var(--tile-color);
+	cursor: pointer;
+	transition: 0.22s all ease-in-out;
+	outline: none;
+	font-weight: bold;
+	letter-spacing: 1px;
+	border: none;
+}
+
+.btn:hover {
+	background-color: #ddd;
+	transform: scale(120%);
+}
+
+.btn:active {
+	background-color: #ccc;
+	transform: scale(100%);
+}
