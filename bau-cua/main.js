@@ -9,6 +9,7 @@ const closeBtn = document.querySelector('#close-btn');
 const rollBtn = document.querySelector('#roll-btn');
 const dice = document.querySelectorAll('.dice');
 const volumeSlider = document.querySelector('#volume-slider');
+const openWhenFinish = document.querySelector('#open-when-finish');
 
 openBtn.addEventListener('click', openCover);
 closeBtn.addEventListener('click', closeCover);
@@ -18,6 +19,9 @@ volumeSlider.addEventListener('change', onVolumeChange);
 function openCover() {
 	cover.setAttribute('data-open', 'true');
 	// could also set play sound to false
+	const audio = new Audio('audio/cover.mp4');
+	audio.volume = volume;
+	audio.play();
 }
 
 function closeCover() {
@@ -88,4 +92,10 @@ function diceRoll() {
 			audio.play();
 		}, DELAY_BETWEEN_SOUNDS * i);
 	}
+
+	setTimeout(() => {
+		if (openWhenFinish.checked) {
+			openCover();
+		}
+	}, (DELAY_BETWEEN_SOUNDS * numRoll) / 1.5 + 500);
 }
