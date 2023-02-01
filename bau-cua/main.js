@@ -8,10 +8,12 @@ const openBtn = document.querySelector('#open-btn');
 const closeBtn = document.querySelector('#close-btn');
 const rollBtn = document.querySelector('#roll-btn');
 const dice = document.querySelectorAll('.dice');
+const volumeSlider = document.querySelector('#volume-slider');
 
 openBtn.addEventListener('click', openCover);
 closeBtn.addEventListener('click', closeCover);
 rollBtn.addEventListener('click', diceRoll);
+volumeSlider.addEventListener('change', onVolumeChange);
 
 function openCover() {
 	cover.setAttribute('data-open', 'true');
@@ -22,6 +24,13 @@ function closeCover() {
 	cover.setAttribute('data-open', 'false');
 	// could also set play sound to true
 }
+
+function onVolumeChange(e) {
+	// set volume of audio
+	volume = e.target.value / 100;
+}
+
+let volume = 0.5;
 
 const diceFormation = {
 	0: {
@@ -75,6 +84,7 @@ function diceRoll() {
 	for (let i = 0; i < numRoll / 1.5; i++) {
 		setTimeout(() => {
 			const audio = new Audio(`audio/metal_${Math.floor(Math.random() * 2 + 1)}.wav`);
+			audio.volume = volume;
 			audio.play();
 		}, DELAY_BETWEEN_SOUNDS * i);
 	}

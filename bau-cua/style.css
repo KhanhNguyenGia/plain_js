@@ -182,3 +182,10 @@ main {
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
+
+#volume-slider {
+	width: 50%;
+	min-width: 200px;
+	height: 40px;
+	margin: 20px auto;
+}
