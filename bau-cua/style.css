@@ -3,10 +3,17 @@
 	--dice-size-negative: -100px;
 	--dice-center-offset: -50px;
 	--disk-size: 400px;
+	--container-margin: 120px;
 }
 
-body {
-	overflow: hidden;
+@media all and (max-width: 500px) {
+	:root {
+		--dice-size: 80px;
+		--dice-size-negative: -80px;
+		--dice-center-offset: -40px;
+		--disk-size: 300px;
+		--container-margin: 80px;
+	}
 }
 
 header {
@@ -29,7 +36,7 @@ main {
 
 .dice-container {
 	position: relative;
-	margin: 150px 0;
+	margin: var(--container-margin) 0;
 	display: grid;
 	grid-template-areas:
 		'top top'
@@ -39,9 +46,15 @@ main {
 	perspective: 1000px;
 }
 
+.btn-container {
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+
 .btn-container > button {
 	color: white;
-	margin: 0 20px;
 }
 
 .dice:nth-child(1) {
